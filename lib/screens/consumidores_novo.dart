@@ -15,6 +15,7 @@ class ConsumidoresScreenNE extends StatefulWidget {
   final int precomunidadeE;
   final bool edit;
 
+
   ConsumidoresScreenNE({Key key, this.edit, this.nomeE, this.sobrenomeE, this.cpfE, this.precomunidadeE}) : super(key: key);
   _ConsumidoresScreenNE createState() => _ConsumidoresScreenNE();
 }

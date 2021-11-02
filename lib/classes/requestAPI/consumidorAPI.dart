@@ -44,16 +44,8 @@ class ConsumidorAPI {
     var passBytes = utf8.encode(senha);
     var passEncode = sha256.convert(passBytes);
 
-    var header = {
-      "Content-Type": "application/json"
-    };
-    Map params = {
-      "nome": nome,
-      "sobrenome": sobrenome,
-      "cpf": cpf,
-      "senha": passEncode.toString(),
-      "precomunidade": precomunidade
-    };
+    var header = {"Content-Type": "application/json"};
+    Map params = {"nome": nome, "sobrenome": sobrenome, "cpf": cpf, "senha": passEncode.toString(), "precomunidade": precomunidade};
 
     var _body = json.encode(params);
     log(_body);
@@ -79,16 +71,8 @@ class ConsumidorAPI {
     var passBytes = utf8.encode(senha);
     var passEncode = sha256.convert(passBytes);
 
-    var header = {
-      "Content-Type": "application/json"
-    };
-    Map params = {
-      "nome": nome,
-      "sobrenome": sobrenome,
-      "cpf": cpf,
-      "senha": passEncode.toString(),
-      "precomunidade": precomunidade
-    };
+    var header = {"Content-Type": "application/json"};
+    Map params = {"nome": nome, "sobrenome": sobrenome, "cpf": cpf, "senha": passEncode.toString(), "precomunidade": precomunidade};
 
     var _body = json.encode(params);
     log(_body);
@@ -111,9 +95,7 @@ class ConsumidorAPI {
   static Future<bool> deleteConsumidor(cpf) async {
     var url = "http://livresbs.herokuapp.com/api/consumidor/$cpf";
 
-    var header = {
-      "Content-Type": "application/json"
-    };
+    var header = {"Content-Type": "application/json"};
 
     log(url);
     var response = await http.delete(Uri.parse(url), headers: header);

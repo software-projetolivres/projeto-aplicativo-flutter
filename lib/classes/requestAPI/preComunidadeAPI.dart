@@ -62,12 +62,8 @@ class PreComunidadeAPI {
   static Future<PreComunidade> postPrecomunidade(nome) async {
     var url = "http://livresbs.herokuapp.com/api/precomunidade";
 
-    var header = {
-      "Content-Type": "application/json"
-    };
-    Map params = {
-      "nome": nome
-    };
+    var header = {"Content-Type": "application/json"};
+    Map params = {"nome": nome};
 
     var _body = json.encode(params);
     log(_body);
@@ -91,14 +87,8 @@ class PreComunidadeAPI {
   static Future<PreComunidade> editPrecomunidade(id, nome) async {
     var url = "http://livresbs.herokuapp.com/api/precomunidade";
 
-    var header = {
-      "Content-Type": "application/json"
-    };
-    Map params = {
-      "nome": nome,
-      "id": id,
-      "consumidores": []
-    };
+    var header = {"Content-Type": "application/json"};
+    Map params = {"nome": nome, "id": id, "consumidores": []};
 
     var _body = json.encode(params);
     log(_body);
@@ -122,9 +112,7 @@ class PreComunidadeAPI {
   static Future<bool> deletePrecomunidade(id) async {
     var url = "http://livresbs.herokuapp.com/api/precomunidade/$id";
 
-    var header = {
-      "Content-Type": "application/json"
-    };
+    var header = {"Content-Type": "application/json"};
 
     log(url);
     var response = await http.delete(Uri.parse(url), headers: header);

@@ -1,3 +1,4 @@
+import 'package:app_livres/screens/consumidores_novo.dart';
 import 'package:app_livres/screens/home_menu.dart';
 import 'package:brasil_fields/brasil_fields.dart';
 import 'package:flutter/material.dart';
@@ -90,7 +91,30 @@ class Login extends StatelessWidget {
                           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
                         ),
                         height: 50,
-                      ))
+                      )
+                  ),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 40.0, right: 25.0, left: 25.0),
+                      child: Container(
+                        child: FlatButton(
+                          child: Text(
+                            "Criar conta",
+                            style: TextStyle(color: Colors.white, fontSize: 20),
+                          ),
+                          onPressed: () {
+                            ///TODO Check Login
+                            ///TODO If login admin
+                            Navigator.push(context, MaterialPageRoute(builder: (context) => ConsumidoresScreenNE(edit: false)));
+
+                            ///TODO If Login user
+                            ///TODO Create Route to User Screen
+                          },
+                          color: Color.fromARGB(255, 41, 171, 226),
+                          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                        ),
+                        height: 50,
+                      )
+                  )
                 ],
               ),
             ),
