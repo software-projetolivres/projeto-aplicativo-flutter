@@ -11,7 +11,9 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>app_livres</string>
+	<string>tets</string>
+<key>CFBundleDisplayName</key>
+<string>tets</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>

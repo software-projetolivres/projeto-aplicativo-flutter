@@ -13,7 +13,7 @@ class PreComunidadeAPI {
 
     var url = "http://livresbs.herokuapp.com/api/precomunidade";
 
-    var response = await http.get(url);
+    var response = await http.get(Uri.parse(url));
     print("RESPONSE STATUS PROJETOS ${response.statusCode}");
     if (response.statusCode == 200) {
       var responseJson = json.decode(response.body);
@@ -40,7 +40,7 @@ class PreComunidadeAPI {
     log("Precomunidade ID $id");
     var url = "http://livresbs.herokuapp.com/api/precomunidade/$id";
     log("$url");
-    var response = await http.get(url);
+    var response = await http.get(Uri.parse(url));
     print("RESPONSE STATUS PROJETOS ${response.statusCode}");
     if (response.statusCode == 200) {
       var responseJson = json.decode(response.body);
@@ -62,12 +62,16 @@ class PreComunidadeAPI {
   static Future<PreComunidade> postPrecomunidade(nome) async {
     var url = "http://livresbs.herokuapp.com/api/precomunidade";
 
-    var header = {"Content-Type": "application/json"};
-    Map params = {"nome": nome};
+    var header = {
+      "Content-Type": "application/json"
+    };
+    Map params = {
+      "nome": nome
+    };
 
     var _body = json.encode(params);
     log(_body);
-    var response = await http.post(url, body: _body, headers: header);
+    var response = await http.post(Uri.parse(url), body: _body, headers: header);
 
     print('Response Status Post: ${response.statusCode}');
 
@@ -87,12 +91,18 @@ class PreComunidadeAPI {
   static Future<PreComunidade> editPrecomunidade(id, nome) async {
     var url = "http://livresbs.herokuapp.com/api/precomunidade";
 
-    var header = {"Content-Type": "application/json"};
-    Map params = {"nome": nome, "id": id, "consumidores": []};
+    var header = {
+      "Content-Type": "application/json"
+    };
+    Map params = {
+      "nome": nome,
+      "id": id,
+      "consumidores": []
+    };
 
     var _body = json.encode(params);
     log(_body);
-    var response = await http.put(url, body: _body, headers: header);
+    var response = await http.put(Uri.parse(url), body: _body, headers: header);
 
     print('Response Status Post: ${response.statusCode}');
 
@@ -112,10 +122,12 @@ class PreComunidadeAPI {
   static Future<bool> deletePrecomunidade(id) async {
     var url = "http://livresbs.herokuapp.com/api/precomunidade/$id";
 
-    var header = {"Content-Type": "application/json"};
+    var header = {
+      "Content-Type": "application/json"
+    };
 
     log(url);
-    var response = await http.delete(url, headers: header);
+    var response = await http.delete(Uri.parse(url), headers: header);
 
     print('Response Status Post: ${response.statusCode}');
 

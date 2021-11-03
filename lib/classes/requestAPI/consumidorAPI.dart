@@ -14,7 +14,7 @@ class ConsumidorAPI {
 
     var url = "http://livresbs.herokuapp.com/api/consumidor";
 
-    var response = await http.get(url);
+    var response = await http.get(Uri.parse(url));
 
     print("RESPONSE STATUS CONSUMIDORES ${response.statusCode}");
     if (response.statusCode == 200) {
@@ -44,12 +44,20 @@ class ConsumidorAPI {
     var passBytes = utf8.encode(senha);
     var passEncode = sha256.convert(passBytes);
 
-    var header = {"Content-Type": "application/json"};
-    Map params = {"nome": nome, "sobrenome": sobrenome, "cpf": cpf, "senha": passEncode.toString(), "precomunidade": precomunidade};
+    var header = {
+      "Content-Type": "application/json"
+    };
+    Map params = {
+      "nome": nome,
+      "sobrenome": sobrenome,
+      "cpf": cpf,
+      "senha": passEncode.toString(),
+      "precomunidade": precomunidade
+    };
 
     var _body = json.encode(params);
     log(_body);
-    var response = await http.put(url, body: _body, headers: header);
+    var response = await http.put(Uri.parse(url), body: _body, headers: header);
 
     print('Response Status Post: ${response.statusCode}');
 
@@ -71,12 +79,20 @@ class ConsumidorAPI {
     var passBytes = utf8.encode(senha);
     var passEncode = sha256.convert(passBytes);
 
-    var header = {"Content-Type": "application/json"};
-    Map params = {"nome": nome, "sobrenome": sobrenome, "cpf": cpf, "senha": passEncode.toString(), "precomunidade": precomunidade};
+    var header = {
+      "Content-Type": "application/json"
+    };
+    Map params = {
+      "nome": nome,
+      "sobrenome": sobrenome,
+      "cpf": cpf,
+      "senha": passEncode.toString(),
+      "precomunidade": precomunidade
+    };
 
     var _body = json.encode(params);
     log(_body);
-    var response = await http.post(url, body: _body, headers: header);
+    var response = await http.post(Uri.parse(url), body: _body, headers: header);
 
     print('Response Status Post: ${response.statusCode}');
 
@@ -95,10 +111,12 @@ class ConsumidorAPI {
   static Future<bool> deleteConsumidor(cpf) async {
     var url = "http://livresbs.herokuapp.com/api/consumidor/$cpf";
 
-    var header = {"Content-Type": "application/json"};
+    var header = {
+      "Content-Type": "application/json"
+    };
 
     log(url);
-    var response = await http.delete(url, headers: header);
+    var response = await http.delete(Uri.parse(url), headers: header);
 
     print('Response Status Post: ${response.statusCode}');
 
