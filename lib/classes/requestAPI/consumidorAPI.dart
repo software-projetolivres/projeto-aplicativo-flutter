@@ -11,35 +11,26 @@ Future<List<Consumidor>> consumidores = ConsumidorAPI.getConsumidores();
 class ConsumidorAPI {
   static Future<List<Consumidor>> getConsumidores() async {
     final consumidores = List<Consumidor>();
-
-    var url = "http://livresbs.herokuapp.com/api/consumidor";
-
+    var url = "http://3.140.224.217:8080/api/consumidor";
     var response = await http.get(Uri.parse(url));
+    print(response.body);
 
-    print("RESPONSE STATUS CONSUMIDORES ${response.statusCode}");
     if (response.statusCode == 200) {
       var responseJson = json.decode(response.body);
-      log("RESPONSE CONSUMIDORES ==> ${response.body}");
-
       List listResponse = responseJson;
-      print("LISTA ==> $listResponse");
 
       for (Map map in listResponse) {
-        print("MAP ==> $map");
         Consumidor c = Consumidor.fromJson(map);
-        print("P ==> ${c.nome}");
         consumidores.add(c);
       }
-      print(consumidores[0].nome);
       return consumidores;
     } else {
-      print("RESPONSE STATUS CONSUMIDORES ${response.statusCode}");
       return null;
     }
   }
 
   static Future<bool> putConsumidores(nome, sobrenome, cpf, senha, precomunidade) async {
-    var url = "http://livresbs.herokuapp.com/api/consumidor";
+    var url = "http://3.140.224.217:8080/api/consumidor";
 
     var passBytes = utf8.encode(senha);
     var passEncode = sha256.convert(passBytes);
@@ -66,7 +57,7 @@ class ConsumidorAPI {
   }
 
   static Future<bool> postConsumidores(nome, sobrenome, cpf, senha, precomunidade) async {
-    var url = "http://livresbs.herokuapp.com/api/consumidor";
+    var url = "http://3.140.224.217:8080/api/consumidor";
 
     var passBytes = utf8.encode(senha);
     var passEncode = sha256.convert(passBytes);
@@ -93,7 +84,7 @@ class ConsumidorAPI {
   }
 
   static Future<bool> deleteConsumidor(cpf) async {
-    var url = "http://livresbs.herokuapp.com/api/consumidor/$cpf";
+    var url = "http://3.140.224.217:8080/api/consumidor/$cpf";
 
     var header = {"Content-Type": "application/json"};
 
@@ -111,5 +102,24 @@ class ConsumidorAPI {
     }
 
     return deletou;
+  }
+
+  static Future<Consumidor> getConsumidor(String id, String token) async {
+    final consumidores = List<Consumidor>();
+    var url = "http://3.140.224.217:8080/api/consumidor/$id";
+    var header = {
+      "Content-Type": "application/json",
+      "Authorization": "Bearer ${token}"
+    };
+    var response = await http.get(Uri.parse(url), headers: header);
+
+    if (response.statusCode == 200) {
+      var responseJson = json.decode(response.body);
+      Map<String, dynamic> resp = responseJson;
+      Consumidor c = Consumidor.fromJson(resp);
+      return c;
+    } else {
+      return null;
+    }
   }
 }

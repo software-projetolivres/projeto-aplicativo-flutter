@@ -8,9 +8,12 @@ class ProdutoAPI {
   static Future<List<Produto>> getProdutos() async {
     var produtosAll = List<Produto>();
 
-    var url = "http://livresbs.ga/api/loja/produtos";
+    var url = "http://3.140.224.217:8080/api/loja/produtos";
 
-    var header = {"Content-Type": "application/json", "cpf": "191"};
+    var header = {
+      "Content-Type": "application/json",
+      "cpf": "123",
+      };
 
     var response = await http.get(Uri.parse(url), headers: header);
 
